@@ -23,6 +23,7 @@ export default function AdminLogin(){
         return;
       }
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('role', res.data.user.role);
       navigate('/admin/dashboard');
     }catch(err){
       console.error('Admin login error:', err.response?.data || err.message);

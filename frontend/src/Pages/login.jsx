@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../api";
 import "./auth.css";
 
 const Login = () => {
@@ -16,24 +16,24 @@ const Login = () => {
     setLoading(true);
 
      try {
-    const res = await axios.post("http://localhost:3000/api/auth/login", {
+    const res = await loginUser({
        email,
        password,
       });
 
       console.log('Login response:', res.data);
       localStorage.setItem("token", res.data.token);
-     
+      localStorage.setItem("role", res.data.user.role);
+
 
      if(res.data.user.role ==="admin"){
       navigate("/admin/dashboard");
       console.log("Login successful. The user is an admin.");
      }else{
-      // navigate("/user/dashboard");
-      navigate("/signup");
+      navigate("/user/dashboard");
       console.log("Login successful. The user is a normie user.");
      }
- 
+
      } catch (err) {
       console.error('Login error:', err.response?.data || err.message);
       setError(err.response?.data?.msg || "Login failed. Please check your credentials.");
@@ -48,13 +48,19 @@ const Login = () => {
       <div className="auth-card">
         <h2 className="auth-title">Login</h2>
         <form onSubmit={handleSubmit} className="auth-form">
+          {error && (
+            <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>
+              {error}
+            </div>
+          )}
          <div className="input-group">
           <input
               type="email"
              className="auth-input"
              placeholder="Email Address"
-             value={email}
+              value={email}
              onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
             required
            />
            </div>
@@ -66,12 +72,13 @@ const Login = () => {
          placeholder="Password"
          value={password}
          onChange={(e) => setPassword(e.target.value)}
+         disabled={loading}
          required
         />
       </div>
 
-       <button type="submit" className="auth-button">
-           Login
+       <button type="submit" className="auth-button" disabled={loading}>
+           {loading ? 'Logging in...' : 'Login'}
         </button>
         </form>
        <p className="auth-switch">
