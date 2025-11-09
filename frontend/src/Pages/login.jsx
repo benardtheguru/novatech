@@ -23,6 +23,7 @@ const Login = () => {
 
       console.log('Login response:', res.data);
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("role", res.data.user.role);
 
 
      if(res.data.user.role ==="admin"){
@@ -47,13 +48,19 @@ const Login = () => {
       <div className="auth-card">
         <h2 className="auth-title">Login</h2>
         <form onSubmit={handleSubmit} className="auth-form">
+          {error && (
+            <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>
+              {error}
+            </div>
+          )}
          <div className="input-group">
           <input
               type="email"
              className="auth-input"
              placeholder="Email Address"
-             value={email}
+              value={email}
              onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
             required
            />
            </div>
@@ -65,12 +72,13 @@ const Login = () => {
          placeholder="Password"
          value={password}
          onChange={(e) => setPassword(e.target.value)}
+         disabled={loading}
          required
         />
       </div>
 
-       <button type="submit" className="auth-button">
-           Login
+       <button type="submit" className="auth-button" disabled={loading}>
+           {loading ? 'Logging in...' : 'Login'}
         </button>
         </form>
        <p className="auth-switch">

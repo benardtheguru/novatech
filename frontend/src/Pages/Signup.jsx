@@ -28,6 +28,7 @@ const Signup = () => {
 
         console.log('Signup successful:', res.data);
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('role', res.data.user.role);
         // if admin signup, show generated loginId so the admin can use unique login page
         if (res.data?.user?.role === 'admin' && res.data.user.loginId) {
           setAdminLoginId(res.data.user.loginId);
