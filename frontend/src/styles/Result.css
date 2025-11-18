@@ -2,7 +2,7 @@
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 20px;
 }
 
@@ -10,7 +10,7 @@
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 25px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,15 +39,15 @@
 }
 
 .result-card-title {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #343a40;
 }
 
 .status-badge {
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -69,7 +69,7 @@
 }
 
 .result-card-summary {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #6c757d;
   margin-top: 10px;
   line-height: 1.5;
