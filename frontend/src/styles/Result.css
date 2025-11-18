@@ -1,0 +1,140 @@
+/* src/styles/Result.css */
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.result-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.result-card.status-received {
+  border-left: 5px solid #28a745; /* Green accent */
+}
+
+.result-card.status-pending {
+  border-left: 5px solid #ffc107; /* Yellow accent */
+}
+
+.result-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.result-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.result-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-badge.received {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Dark green text */
+}
+
+.status-badge.pending {
+  background-color: #fff3cd; /* Light yellow */
+  color: #856404; /* Dark yellow text */
+}
+
+.result-card-body {
+  margin-bottom: 20px;
+}
+
+.result-card-summary {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.result-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.action-button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.action-button.primary {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+}
+
+.action-button.primary:hover {
+  background-color: #0056b3;
+}
+
+.action-button.secondary {
+  background-color: #e9ecef;
+  color: #495057;
+  border: 1px solid #ced4da;
+}
+
+.action-button.secondary:hover {
+  background-color: #dae0e5;
+}
+
+.empty-results-container {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 1px dashed #ced4da;
+  margin-top: 30px;
+}
+
+.empty-results-container h2 {
+  font-size: 1.8rem;
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+.empty-results-container p {
+  font-size: 1rem;
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+.empty-results-container .illustration {
+  margin-bottom: 20px;
+  /* Placeholder for an SVG or image */
+}
