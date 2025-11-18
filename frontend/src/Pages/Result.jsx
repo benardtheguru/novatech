@@ -15,7 +15,7 @@ const Result = () => {
     const fetchResults = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:3001/api/results", {
+        const res = await axios.get("http://localhost:3001/api/results/mine", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setResults(res.data);
@@ -45,7 +45,7 @@ const Result = () => {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <h1 className="text-2xl font-bold text-gray-900">Your Test Results</h1>
 
-          <div className="flex space-x-6 mb-6">
+          <div className="flex space-x-10 mb-6">
             <button
               onClick={() => setFilterStatus("all")}
               className={`px-4 py-2 rounded-md text-sm font-medium flex items-center ${
