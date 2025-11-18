@@ -6,6 +6,14 @@ import UserDashboard from "./Pages/UserDashboard";
 import AdminDashboard from "./Pages/AdminDashboard";
 import PrivateRoute from "./Routes/PrivateRoute";
 import AdminRoute from "./Routes/AdminRoute";
+import Upload from "./Pages/Upload";
+import AboutUs from "./Pages/AboutUs";
+import AdminAppointments from "./Pages/AdminAppointments";
+import UserAppointments from "./Pages/UserAppointments";
+
+import Appointment from "./Pages/Appointment";
+import Result from "./Pages/Result";
+import Payment from "./Pages/Payment";
 
 
 function App() {
@@ -15,7 +23,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-  <Route path="/admin/login/:loginId" element={<AdminLogin />} />
+        <Route path="/admin/login/:loginId" element={<AdminLogin />} />
         <Route
           path="/user/dashboard"
           element={
@@ -32,6 +40,14 @@ function App() {
             </AdminRoute>
           }
         />
+        <Route path="/admin/upload" element={<AdminRoute><Upload /></AdminRoute>} />
+        <Route path="/admin/about" element={<AdminRoute><AboutUs /></AdminRoute>} />
+                <Route path="/admin/appointments" element={<AdminRoute><AdminAppointments /></AdminRoute>} />
+        <Route path="/user/appointment" element={<PrivateRoute><Appointment /></PrivateRoute>} />
+        <Route path="/user/appointments" element={<PrivateRoute><UserAppointments /></PrivateRoute>} />
+        <Route path="/user/results" element={<PrivateRoute><Result /></PrivateRoute>} />
+        <Route path="/user/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
+        <Route path="/user/about" element={<PrivateRoute><AboutUs /></PrivateRoute>} />
       </Routes>
     </Router>
   );
