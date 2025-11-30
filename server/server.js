@@ -23,13 +23,10 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect to MongoDB
-mongoose
-  .connect("mongodb://localhost:27017/novatech")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+connectDB();
 
 // Serve static files from React app
-app.use(express.static(path.join(__dirname, "..", "sen201project", "build")));
+app.use(express.static(path.join(__dirname, "..", "frontend", "build")));
 
 // API routes - must come after static files
 app.use("/api/auth", authRoutes);
@@ -42,7 +39,7 @@ app.get("/api", (req, res) => res.json({ msg: "NovaTech API is running" }));
 
 // Handle React app routing - All non-API routes should serve the React app
 app.get(["/", "/signup", "/login", "/user/dashboard", "/admin/dashboard"], (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "sen201project", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "frontend", "build", "index.html"));
 });
 
 const PORT = process.env.PORT || 3001;
