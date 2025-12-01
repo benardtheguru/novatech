@@ -17,10 +17,15 @@ import testResultRoutes from "./Routes/testResultRoutes.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://novatech-six-sigma.vercel.app", "http://localhost:3000"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Connect to MongoDB
 connectDB();
@@ -31,8 +36,8 @@ app.use(express.static(path.join(__dirname, "..", "frontend", "build")));
 // API routes - must come after static files
 app.use("/api/auth", authRoutes);
 app.use("/api/test", textRoutes);
-app.use("/api/appointments",appointmentRoutes);
-app.use("/api/results",testResultRoutes);
+app.use("/api/appointments", appointmentRoutes);
+app.use("/api/results", testResultRoutes);
 
 // API health check endpoint
 app.get("/api", (req, res) => res.json({ msg: "NovaTech API is running" }));
